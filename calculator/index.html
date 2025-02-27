@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <h2>Simple Calculator</h2>
+        <input type="number" id="first" placeholder="Enter first number">
+        <input type="number" id="second" placeholder="Enter second number">
+        <input type="text" id="output" placeholder="Output" readonly>
+
+        <div class="buttons">
+            <button onclick="calculate('add')" class="add">Addition</button>
+            <button onclick="calculate('sub')" class="subtract">Subtraction</button>
+            <button onclick="calculate('multiply')" class="multiply">Multiplication</button>
+            <button onclick="calculate('divide')" class="divide">Division</button>
+        </div>
+        <button onclick="clearAll()" class="clear">Clear All</button>
+    </div>
+
+    <script>
+        function calculate(operation) {
+            let first = parseFloat(document.getElementById("first").value);
+            let second = parseFloat(document.getElementById("second").value);
+            let result = 0;
+
+            if (isNaN(first) || isNaN(second)) {
+                alert("Please enter valid numbers!");
+                return;
+            }
+
+            if (operation === "add") {
+                result = first + second;
+            } else if (operation === "sub") {
+                result = first - second;
+            } else if (operation === "multiply") {
+                result = first * second;
+            } else if (operation === "divide") {
+                if (second === 0) {
+                    alert("Cannot divide by zero!");
+                    return;
+                }
+                result = first / second;
+            }
+
+            document.getElementById("output").value = result;
+        }
+
+        function clearAll() {
+            document.getElementById("first").value = "";
+            document.getElementById("second").value = "";
+            document.getElementById("output").value = "";
+        }
+    </script>
+</body>
+</html>
